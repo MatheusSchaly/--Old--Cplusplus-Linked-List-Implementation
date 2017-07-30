@@ -1,17 +1,15 @@
-//============================================================================
-// Name        : LinkedList.cpp
-// Author      : Matheus Henrique Schaly
-// Date        : Jul 17, 2017
-// Description : Linked List implementation
-//============================================================================
+/*
+ * LinkedList.cpp
+ *
+ * Author:      Matheus Schaly
+ * Created on:  Jul 17, 2017
+ * Description: LinkedList implementation
+ */
+
 
 #include <iostream>
+#include "Node.h"
 using namespace std;
-
-struct Node {
-	int data;
-	Node *next;
-};
 
 Node *head = NULL;
 
@@ -22,19 +20,19 @@ Node *head = NULL;
  */
 
 void insert (int data, int position) {
-	Node *temp1 = new Node(); // Creating the new node to be inserted
-	temp1 -> data = data; // Including the data inside new node
+	Node *temp1 = new Node();
+	temp1 -> setData(data);
 	if (position == 1) {
-		temp1 -> next = head;
+		temp1 -> setNext(head);
 		head = temp1;
 		return;
 	}
 	Node *temp2 = head;
 	for (int i = 2; i < position; i++) {
-		temp2 = temp2 -> next;
+		temp2 = temp2 -> getNext();
 	}
-	temp1 -> next = temp2 -> next;
-	temp2 -> next = temp1;
+	temp1 -> setNext(temp2 -> getNext());
+	temp2 -> setNext(temp1);
 }
 
 /*
@@ -46,14 +44,14 @@ void remove (int position) {
 	Node *temp = head;
 	Node *prev;
 	if (position == 1) {
-		head = temp -> next;
+		head = temp -> getNext();
 		return;
 	}
 	for (int i = 1; i < position; i++) {
 		prev = temp;
-		temp = temp -> next;
+		temp = temp -> getNext();
 	}
-	prev -> next = temp -> next;
+	prev -> setNext(temp -> getNext());
 }
 
 /*
@@ -65,8 +63,8 @@ void reverseList () {
 	prev = NULL;
 	current = head;
 	while (current != NULL) {
-		next = current -> next;
-		current -> next = prev;
+		next = current -> getNext();
+		current -> setNext(prev);
 		prev = current;
 		current = next;
 	}
@@ -80,8 +78,8 @@ void reverseList () {
 void printList () {
 	Node *temp = head;
 	while (temp != NULL) {
-		cout << temp -> data;
-		temp = temp -> next;
+		cout << temp -> getData();
+		temp = temp -> getNext();
 	}
 	cout << endl;
 }
@@ -107,4 +105,5 @@ int main() {
 	printList(); // 7 1 3 8 2
 	reverseList(); // 2 8 3 1 7
 	printList(); // 2 8 3 1 7
+	cout << "OIE";
 }
