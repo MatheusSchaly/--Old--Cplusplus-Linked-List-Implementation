@@ -6,8 +6,8 @@
  * Description: LinkedList implementation
  */
 
-
 #include <iostream>
+
 #include "Node.h"
 using namespace std;
 
@@ -105,5 +105,4 @@ int main() {
 	printList(); // 7 1 3 8 2
 	reverseList(); // 2 8 3 1 7
 	printList(); // 2 8 3 1 7
-	cout << "OIE";
 }
