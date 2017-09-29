@@ -41,12 +41,12 @@ void insert (int data, int position) {
  */
 
 void remove (int position) {
-	Node *temp = head;
-	Node *prev;
 	if (position == 1) {
-		head = temp -> getNext();
+		head = head -> getNext();
 		return;
 	}
+	Node *temp = head;
+	Node *prev;
 	for (int i = 1; i < position; i++) {
 		prev = temp;
 		temp = temp -> getNext();
